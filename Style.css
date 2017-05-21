@@ -1,0 +1,140 @@
+.title
+{
+    font-size: 100px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.titlesmall
+{
+    font-size: 30px;
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: bold;
+
+}
+
+
+.linkButton { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     text-decoration: underline;
+     cursor: pointer; 
+}
+
+.greyfont
+{
+color: #4F4F4F;
+}
+
+.round
+{
+    border-radius: 5px;
+}
+
+input[type="text"]
+{
+    font-family: Arial, Helvetica, sans-serif;
+font-size: 30px;
+border-radius: 5px;
+padding: 5px 10px 5px 30px;
+color: #4F4F4F;
+    margin-left: 10px;
+}
+input[type="checkbox"]
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+input[type="submit"]
+{
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size:30px;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn
+{
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size:30px;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn_sm
+{
+    border-radius: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size:30px;
+    padding: 5px 5px 5px 5px;
+}
+    
+
+
+.center {
+    margin: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bottomright
+{
+    margin: 0;
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    transform: translate(-100%, -100%);
+}
+
+.optional
+{
+    height:48px; 
+    width:400px; 
+}
+
+.textfield
+{
+font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-size:30px;
+    
+}
+
+
+
+textarea
+{
+font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+font-size: 30px;
+    border-spacing: 10px;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+color: #4F4F4F;
+}
+
+a:link {
+    color:#000000;
+    text-decoration: none;
+}
+
+a:visited {
+    color:#000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#000000;
+    text-decoration: none;
+}
+
+a:active {
+    color:#000000;
+    text-decoration: none;
+}
