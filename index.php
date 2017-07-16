@@ -3,7 +3,10 @@
 
 include "_lib.php";
   session_start();
-  
+echo '<pre>';
+var_dump($_SESSION);
+echo 'session email: ' . $_SESSION['email'];
+echo '</pre>';
 if(isset($_POST["student"]))
 {
     /*$_SESSION["classn"] = $_POST["CLASSN"];*/
@@ -58,6 +61,7 @@ if(isset($_POST['visitor2']))
 if(isset($_POST["notes"]))  // CONTACT PAGE PROCESSING
 {
     postToSession();
+    sendMail($_SESSION['email'], 'Thank you for registering', 'admin@pvnet.com');
     include "visitorthankyou.php";
     dump();
     clearSession();

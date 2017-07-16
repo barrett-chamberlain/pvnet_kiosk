@@ -1,9 +1,10 @@
 <?php
 
-$OFFSET = -(7*60*60); // SERVER IS 8 HOURS IN ADVANCE (adjusted to 7 hours on 4-26)
+$OFFSET = 0;
+//-(7*60*60); // SERVER IS 8 HOURS IN ADVANCE (adjusted to 7 hours on 4-26)
 // NOTE: DATES BEYOND A CERTAIN SUNDAY SHOULD BE ADJUSTED FORWARD TO MATCH DAYLIGHT SAVINGS 4-26
 
-$WEBSITEURLJUMP = "http://edu.pvnet.com/kiosk/";
+$WEBSITEURLJUMP = "https://back-office-pvnet.c9users.io/KIOSK/";
 
 /*
     "r" (Read only. Starts at the beginning of the file)
@@ -338,7 +339,26 @@ function NOTES_PUSH()
          //  echo '/notes/'.leadingZeroes(0).".txt";
     overwriteFile('/notes/'.leadingZeroes(0).".txt","");
 }
-
+// Send emails through SimpleMail
+function sendMail($to,$subj,$from,$reply='')
+{
+    require 'class.simple_mail.php';
+    /* @var SimpleMail $mail */
+    $mail = SimpleMail::make()
+->setTo($to, $to_name)
+->setSubject($subj)
+->setFrom($from, 'Mail Bot')
+->setReplyTo($reply, 'Mail Bot')
+->setCc(['Recipient 2' => 'test2@example.com', 'Recipient 3' => 'test3@example.com'])
+->setBcc(['Recipient 4' => 'test4@example.com'])
+->addGenericHeader('X-Mailer', 'PHP/' . phpversion())
+->setHtml()
+->setMessage('<strong>This is a test message.</strong>')
+->setWrap(78);
+    $send = $mail->send();
+    //echo $mail->debug();
+// echo 'complete';
+}   
 /*
 
 DUMP TEMPLATE

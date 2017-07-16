@@ -5,8 +5,9 @@ NOTES_PUSH();
 
 <HEAD>
     <LINK REL="stylesheet" TYPE="text/css" HREF="Style.css">
-    <?php jumpToSelf();
-    HTML_TIMER();
+    <?php 
+    // jumpToSelf();
+    // HTML_TIMER();
     ?>
 
 </HEAD>
