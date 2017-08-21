@@ -1,16 +1,23 @@
-
 <?php
+include('_lib.php');
+include('./_includes/connect.php');
+session_start();
 
-include "_lib.php";
-  session_start();
-echo '<pre>';
-var_dump($_SESSION);
-echo 'session email: ' . $_SESSION['email'];
-echo '</pre>';
+// session_unset();
+// echo '<pre>';
+// echo '==============' . '<br />';
+// echo 'SESSION' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_SESSION);
+// echo '==============' . '<br />';
+// echo 'POST' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_POST);
+// echo 'session email: ' . $_SESSION['email'];
+// echo '</pre>';
 if(isset($_POST["student"]))
 {
     /*$_SESSION["classn"] = $_POST["CLASSN"];*/
-    postToSession();
 //    echo "confirm.php";
     include "confirm.php";
     dump();
@@ -61,7 +68,8 @@ if(isset($_POST['visitor2']))
 if(isset($_POST["notes"]))  // CONTACT PAGE PROCESSING
 {
     postToSession();
-    sendMail($_SESSION['email'], 'Thank you for registering', 'admin@pvnet.com');
+    insertRecord($conn,_session);
+    // sendMail($_SESSION['email'], 'Thank you for registering', 'admin@pvnet.com');
     include "visitorthankyou.php";
     dump();
     clearSession();
