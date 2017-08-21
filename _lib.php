@@ -368,68 +368,68 @@ function insertRecord($connection,$session) {
     $studentAge6 = ($_SESSION['Age5'] == '') ? 0 : $_SESSION['Age5'];
     $studentAge7 = ($_SESSION['Age6'] == '') ? 0 : $_SESSION['Age6'];
     $studentAge8 = ($_SESSION['Age7'] == '') ? 0 : $_SESSION['Age7'];
-    if (isset($_SESSION['box'][0])) {
+    if (in_array(0, $_SESSION['box'])) {
         $areas_of_interest = 'Drones, ';
     }
-    if (isset($_SESSION['box'][1])) {
+    if (in_array(1, $_SESSION['box'])) {
         $areas_of_interest .= 'Robotics, ';
     }
-    if (isset($_SESSION['box'][2])) {
+    if (in_array(2, $_SESSION['box'])) {
         $areas_of_interest .= 'Vex IQ, ';
     }
-    if (isset($_SESSION['box'][3])) {
+    if (in_array(3, $_SESSION['box'])) {
         $areas_of_interest .= 'Engineering, ';
     }
-    if (isset($_SESSION['box'][4])) {
+    if (in_array(4, $_SESSION['box'])) {
         $areas_of_interest .= '3D Printing, ';
     }
-    if (isset($_SESSION['box'][5])) {
+    if (in_array(5, $_SESSION['box'])) {
         $areas_of_interest .= 'Game Design, ';
     }
-    if (isset($_SESSION['box'][6])) {
+    if (in_array(6, $_SESSION['box'])) {
         $areas_of_interest .= 'Unity, ';
     }
-    if (isset($_SESSION['box'][7])) {
+    if (in_array(7, $_SESSION['box'])) {
         $areas_of_interest .= 'Unreal Engine, ';
     }
-    if (isset($_SESSION['box'][8])) {
+    if (in_array(8, $_SESSION['box'])) {
         $areas_of_interest .= 'Vive, ';
     }
-    if (isset($_SESSION['box'][9])) {
+    if (in_array(9, $_SESSION['box'])) {
         $areas_of_interest .= 'Oculus, ';
     }
-    if (isset($_SESSION['box'][10])) {
+    if (in_array(10, $_SESSION['box'])) {
         $areas_of_interest .= 'Minecraft, ';
     }
-    if (isset($_SESSION['box'][11])) {
+    if (in_array(11, $_SESSION['box'])) {
         $areas_of_interest .= 'Java, ';
     }
-    if (isset($_SESSION['box'][12])) {
+    if (in_array(12, $_SESSION['box'])) {
         $areas_of_interest .= 'C++, ';
     }
-    if (isset($_SESSION['box'][13])) {
+    if (in_array(13, $_SESSION['box'])) {
         $areas_of_interest .= 'Web Design, ';
     }
-    if (isset($_SESSION['box'][14])) {
+    if (in_array(14, $_SESSION['box'])) {
         $areas_of_interest .= 'Photoshop, ';
     }
-    if (isset($_SESSION['box'][15])) {
+    if (in_array(15, $_SESSION['box'])) {
         $areas_of_interest .= '3D Modeling and Animation, ';
     }
-    if (isset($_SESSION['box'][16])) {
+    if (in_array(16, $_SESSION['box'])) {
         $areas_of_interest .= 'Photography, ';
     }
-    if (isset($_SESSION['box'][17])) {
+    if (in_array(17, $_SESSION['box'])) {
         $areas_of_interest .= 'Video Production, ';
     }
-    if (isset($_SESSION['box'][18])) {
+    if (in_array(20, $_SESSION['box'])) {
         $areas_of_interest .= 'Tinker Camp, ';
     }
-    if (isset($_SESSION['box'][19])) {
+    if (in_array(22, $_SESSION['box'])) {
         $areas_of_interest .= 'Volunteering, ';
     }
-    if (isset($_SESSION['box'][20])) {
-        $areas_of_interest .= 'Donation';
+    if (in_array(23, $_SESSION['box'])) {
+        $areas_of_interest .= 'Donation, ';
     }
     if (isset($_SESSION['GenderM0'])) {
         $student1_gender = 'Male';
@@ -485,14 +485,14 @@ function insertRecord($connection,$session) {
         $sponsor="no";
     }
     $sql = "INSERT INTO combined_main(Adult_First_Name,Adult_Last_Name,Adult_Interests,Adult_Email,Adult_Phone,Adult_Address_Line_1,Adult_City,Adult_State,Adult_Zip_Code,is_sponsor,Sponsor_Company_Name,Sponsor_Company_City,Sponsor_Company_Website,Sponsor_Notes,student1_name,student1_gender,student1_age, student1_email,student2_name,student2_gender,student2_age, student2_email,student3_name,student3_gender,student3_age, student3_email,student4_name,student4_gender,student4_age, student4_email,student5_name,student5_gender,student5_age, student5_email,student6_name,student6_gender,student6_age, student6_email,student7_name,student7_gender,student7_age, student7_email,student8_name,student8_gender,student8_age, student8_email,  misc_notes,misc_staff_notes) VALUES ('$_SESSION[FNAME]','$_SESSION[LNAME]','$areas_of_interest','$_SESSION[email]','$_SESSION[phone]','$_SESSION[address]','$_SESSION[city]','$_SESSION[state]','$_SESSION[zip]','$sponsor','$_SESSION[CompanyName]','$_SESSION[CompanyCity]','$_SESSION[CompanyWebsite]','$_SESSION[Notes]','$_SESSION[Prospective0]','$student1_gender',$studentAge1,'$_SESSION[propemail0]','$_SESSION[Prospective1]','$student2_gender',$studentAge2,'$_SESSION[propemail1]','$_SESSION[Prospective2]','$student3_gender',$studentAge3,'$_SESSION[propemail2]','$_SESSION[Prospective3]','$student4_gender',$studentAge4,'$_SESSION[propemail3]','$_SESSION[Prospective4]','$student5_gender',$studentAge5,'$_SESSION[propemail4]','$_SESSION[Prospective5]','$student6_gender',$studentAge6,'$_SESSION[propemail5]','$_SESSION[Prospective6]','$student7_gender',$studentAge7,'$_SESSION[propemail6]','$_SESSION[Prospective7]','$student8_gender',$studentAge8,'$_SESSION[propemail7]','$_SESSION[visitornotes]','$_SESSION[visitorstaffnotes]')";
-    // if ($connection->query($sql) === TRUE) {
-    //     echo "New record created successfully";
-    // } else {
-    //     echo "Error: " . $sql . "<br>" . $connection->error;
-    //     echo '<pre>';
-    //     echo $sql;
-    //     echo '</pre>';
-    // }
+    if ($connection->query($sql) === TRUE) {
+        // echo "New record created successfully";
+    } else {
+        // echo "Error: " . $sql . "<br>" . $connection->error;
+        // echo '<pre>';
+        // echo $sql;
+        // echo '</pre>';
+    }
 }
 /*
 
