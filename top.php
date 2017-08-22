@@ -21,14 +21,14 @@
             <TD class="textfield">
                 First Name
             </TD>
-            <td><INPUT TYPE="text" name="FNAME"></td>
+            <td><INPUT TYPE="text" name="FNAME" required></td>
         </TR>
         <TR>
             <TD class="textfield">
                 Last Name 
                 
             </TD>
-            <td><INPUT TYPE="text" name="LNAME"></td>
+            <td><INPUT TYPE="text" name="LNAME" required></td>
         </TR>
         <TR>
             <TD colspan=2 align="center">

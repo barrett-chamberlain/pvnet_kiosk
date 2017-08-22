@@ -79,7 +79,7 @@
     
 <table class="textfield round" cellpadding=10 cellspacing=10 width=600 bgcolor="#00802b" >
             <tr>
-                <td>Email</td><td><input type=text name='email'></td>
+                <td>Email</td><td><input type=text name='email' required></td>
             </tr>
             <tr>
                 <td>Phone</td><td><input type=text name='phone'></td>
