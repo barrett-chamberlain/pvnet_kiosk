@@ -231,6 +231,13 @@ function jumpToSelf()
     echo $html;
     //return $html;
 }
+function jumpToSelf_15()
+{
+    $html = '<meta http-equiv=\'refresh\' content=\'15; url='.$WEBSITEURLJUMP.'\'>';
+    echo $html;
+    //return $html;
+}
+
 
 function thisUrl()
 {
@@ -484,7 +491,8 @@ function insertRecord($connection,$session) {
     } else {
         $sponsor="no";
     }
-    $sql = "INSERT INTO combined_main(Adult_First_Name,Adult_Last_Name,Adult_Interests,Adult_Email,Adult_Phone,Adult_Address_Line_1,Adult_City,Adult_State,Adult_Zip_Code,is_sponsor,Sponsor_Company_Name,Sponsor_Company_City,Sponsor_Company_Website,Sponsor_Notes,student1_name,student1_gender,student1_age, student1_email,student2_name,student2_gender,student2_age, student2_email,student3_name,student3_gender,student3_age, student3_email,student4_name,student4_gender,student4_age, student4_email,student5_name,student5_gender,student5_age, student5_email,student6_name,student6_gender,student6_age, student6_email,student7_name,student7_gender,student7_age, student7_email,student8_name,student8_gender,student8_age, student8_email,  misc_notes,misc_staff_notes) VALUES ('$_SESSION[FNAME]','$_SESSION[LNAME]','$areas_of_interest','$_SESSION[email]','$_SESSION[phone]','$_SESSION[address]','$_SESSION[city]','$_SESSION[state]','$_SESSION[zip]','$sponsor','$_SESSION[CompanyName]','$_SESSION[CompanyCity]','$_SESSION[CompanyWebsite]','$_SESSION[Notes]','$_SESSION[Prospective0]','$student1_gender',$studentAge1,'$_SESSION[propemail0]','$_SESSION[Prospective1]','$student2_gender',$studentAge2,'$_SESSION[propemail1]','$_SESSION[Prospective2]','$student3_gender',$studentAge3,'$_SESSION[propemail2]','$_SESSION[Prospective3]','$student4_gender',$studentAge4,'$_SESSION[propemail3]','$_SESSION[Prospective4]','$student5_gender',$studentAge5,'$_SESSION[propemail4]','$_SESSION[Prospective5]','$student6_gender',$studentAge6,'$_SESSION[propemail5]','$_SESSION[Prospective6]','$student7_gender',$studentAge7,'$_SESSION[propemail6]','$_SESSION[Prospective7]','$student8_gender',$studentAge8,'$_SESSION[propemail7]','$_SESSION[visitornotes]','$_SESSION[visitorstaffnotes]')";
+    $_SESSION['conf_id'] = md5(uniqid(rand(), true));
+    $sql = "INSERT INTO combined_main(Adult_First_Name,Adult_Last_Name,Adult_Interests,Adult_Email,Adult_Phone,Adult_Address_Line_1,Adult_City,Adult_State,Adult_Zip_Code,is_sponsor,Sponsor_Company_Name,Sponsor_Company_City,Sponsor_Company_Website,Sponsor_Notes,student1_name,student1_gender,student1_age, student1_email,student2_name,student2_gender,student2_age, student2_email,student3_name,student3_gender,student3_age, student3_email,student4_name,student4_gender,student4_age, student4_email,student5_name,student5_gender,student5_age, student5_email,student6_name,student6_gender,student6_age, student6_email,student7_name,student7_gender,student7_age, student7_email,student8_name,student8_gender,student8_age, student8_email,  misc_notes,misc_staff_notes,conf_id) VALUES ('$_SESSION[FNAME]','$_SESSION[LNAME]','$areas_of_interest','$_SESSION[email]','$_SESSION[phone]','$_SESSION[address]','$_SESSION[city]','$_SESSION[state]','$_SESSION[zip]','$sponsor','$_SESSION[CompanyName]','$_SESSION[CompanyCity]','$_SESSION[CompanyWebsite]','$_SESSION[Notes]','$_SESSION[Prospective0]','$student1_gender',$studentAge1,'$_SESSION[propemail0]','$_SESSION[Prospective1]','$student2_gender',$studentAge2,'$_SESSION[propemail1]','$_SESSION[Prospective2]','$student3_gender',$studentAge3,'$_SESSION[propemail2]','$_SESSION[Prospective3]','$student4_gender',$studentAge4,'$_SESSION[propemail3]','$_SESSION[Prospective4]','$student5_gender',$studentAge5,'$_SESSION[propemail4]','$_SESSION[Prospective5]','$student6_gender',$studentAge6,'$_SESSION[propemail5]','$_SESSION[Prospective6]','$student7_gender',$studentAge7,'$_SESSION[propemail6]','$_SESSION[Prospective7]','$student8_gender',$studentAge8,'$_SESSION[propemail7]','$_SESSION[visitornotes]','$_SESSION[visitorstaffnotes]','$_SESSION[conf_id]')";
     if ($connection->query($sql) === TRUE) {
         // echo "New record created successfully";
     } else {
@@ -493,7 +501,29 @@ function insertRecord($connection,$session) {
         // echo $sql;
         // echo '</pre>';
     }
+    sendConfirmationEmail($_SESSION['conf_id'],$_SESSION['email']);
 }
+// Sends confirmation email through SimpleMail
+function sendConfirmationEmail($conf_id,$to)
+{
+    require 'class.simple_mail.php';
+    /* @var SimpleMail $mail */
+    $mail = SimpleMail::make()
+->setTo($to, $to_name)
+->setSubject('Please confirm your email address')
+->setFrom('admin@pvnet.com', 'PVNet')
+->setReplyTo('no-reply@pvnet.com', 'Do Not Reply')
+// ->setCc(['Recipient 2' => 'test2@example.com', 'Recipient 3' => 'test3@example.com'])
+// ->setBcc(['Recipient 4' => 'test4@example.com'])
+->addGenericHeader('X-Mailer', 'PHP/' . phpversion())
+->setHtml()
+->setMessage('Thank you for registering!<br />Please <a href="http://edu.pvnet.com/kiosk/confirm_email.php?conf_id=' . $conf_id  . '">click here</a> to confirm your email address.')
+->setWrap(78);
+    $send = $mail->send();
+//echo $mail->debug();
+// echo 'conf sent';
+}
+
 /*
 
 DUMP TEMPLATE

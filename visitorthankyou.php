@@ -6,8 +6,8 @@ NOTES_PUSH();
 <HEAD>
     <LINK REL="stylesheet" TYPE="text/css" HREF="Style.css">
     <?php 
-    // jumpToSelf();
-    // HTML_TIMER();
+    jumpToSelf_15();
+    HTML_TIMER();
     ?>
 
 </HEAD>
@@ -28,7 +28,7 @@ NOTES_PUSH();
         </TR>
         <TR>
             <TD class="textfield" colspan=2 align="center">
-                 Your information has been submitted.  We hope you have a nice day.
+                 A confirmation email has been sent to your email address: <?php echo $_SESSION['email'] ?>. Your information has been submitted.  We hope you have a nice day.
             </TD>
         </TR>
         <TR>
