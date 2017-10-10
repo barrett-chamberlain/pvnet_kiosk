@@ -137,12 +137,17 @@ $T = $time+$GLOBALS["OFFSET"];
 function TIMEstr($time)
 {
     $T = $time+$GLOBALS["OFFSET"]; 
-    return date("h:i a",$T);
+    return date("a h:i",$T);
 }
 function DATEstr($time)
 {
     $T = $time+$GLOBALS["OFFSET"]; 
     return date("F d, Y",$T);
+}
+function DATEstr_num($time)
+{
+    $T = $time+$GLOBALS["OFFSET"]; 
+    return date("Y-m-d",$T);
 }
 function DURATIONstr($intime,$outtime)
 { 
@@ -231,6 +236,12 @@ function jumpToSelf()
     echo $html;
     //return $html;
 }
+function jumpStatic_15()
+{
+    $html = '<meta http-equiv=\'refresh\' content=\'15; url='.INDEX.'\'>';
+    echo $html;
+    //return $html;
+}
 function jumpToSelf_15()
 {
     $html = '<meta http-equiv=\'refresh\' content=\'15; url='.$WEBSITEURLJUMP.'\'>';
@@ -270,7 +281,6 @@ function clearSession()
     {
         appendFile("PRESENT.dat",$buf);
     }
-
     foreach($_SESSION as $k => $v)
         unset($_SESSION[$k]);
 }
@@ -365,7 +375,30 @@ function sendMail($to,$subj,$from,$reply='')
 //echo $mail->debug();
 // echo 'complete';
 }
-
+function insertTimestamp($connection,$session) {
+    $user_type = 'default';
+    if (in_array('s', $_SESSION['CTG'])) {
+        $user_type = 'student';
+    }
+    if (in_array('hs', $_SESSION['CTG'])) {
+        $user_type = 'homeschool';
+    }
+    if (in_array('i', $_SESSION['CTG'])) {
+        $user_type = 'intern';
+    }
+    if (in_array('vl', $_SESSION['CTG'])) {
+        $user_type = 'volunteer';
+    }
+    $sql = "INSERT INTO timestamp(fname,lname,user_type,classn) VALUES ('$_SESSION[FNAME]','$_SESSION[LNAME]','$user_type','$_SESSION[CLASSN]')";
+    if ($connection->query($sql) === TRUE) {
+        // echo "New record created successfully";
+    } else {
+        // echo "Error: " . $sql . "<br>" . $connection->error;
+        // echo '<pre>';
+        // echo $sql;
+        // echo '</pre>';
+    }
+}
 function insertRecord($connection,$session) {
     $studentAge1 = ($_SESSION['Age0'] == '') ? 0 : $_SESSION['Age0'];
     $studentAge2 = ($_SESSION['Age1'] == '') ? 0 : $_SESSION['Age1'];

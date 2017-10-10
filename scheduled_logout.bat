@@ -1,0 +1,1 @@
+cd /D "C:\inetpub\wwwroot\kiosk\" "C:\Program Files\PHP\v7.1\php.exe" -f logout_all.php

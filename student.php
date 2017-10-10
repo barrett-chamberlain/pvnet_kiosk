@@ -1,4 +1,17 @@
-
+<?php
+// session_unset();
+// echo '<pre>';
+// echo '==============' . '<br />';
+// echo 'SESSION' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_SESSION);
+// echo '==============' . '<br />';
+// echo 'POST' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_POST);
+// echo 'session email: ' . $_SESSION['email'];
+// echo '</pre>';
+?>
 <HEAD>
     <LINK REL="stylesheet" TYPE="text/css" HREF="Style.css">
 </HEAD>

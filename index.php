@@ -2,24 +2,41 @@
 include('_lib.php');
 include('./_includes/connect.php');
 session_start();
+if(isset($_GET["id"])) {
+    $sanitized_id = mysqli_real_escape_string($conn,$_GET["id"]);
+    $sql = "UPDATE timestamp SET logged_in=0 WHERE id=" . $sanitized_id;
+    $sql2 = "UPDATE timestamp SET time_logged_out=now() WHERE id=" . $sanitized_id;
+    if ($conn->query($sql) === TRUE) {
+
+    }
+    if ($conn->query($sql2) === TRUE) {
+
+    }
+    $_SESSION['logout_id'] = $sanitized_id;
+    include "thankyou.php";
+    // dump();
+    die();
+}
 // session_unset();
-echo '<pre>';
-echo '==============' . '<br />';
-echo 'SESSION' . '<br />';
-echo '==============' . '<br />';
-var_dump($_SESSION);
-echo '==============' . '<br />';
-echo 'POST' . '<br />';
-echo '==============' . '<br />';
-var_dump($_POST);
-echo 'session email: ' . $_SESSION['email'];
-echo '</pre>';
+// echo '<pre>';
+// echo '==============' . '<br />';
+// echo 'SESSION' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_SESSION);
+// echo '==============' . '<br />';
+// echo 'POST' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_POST);
+// echo 'session email: ' . $_SESSION['email'];
+// echo '</pre>';
 if(isset($_POST["student"]))
 {
     /*$_SESSION["classn"] = $_POST["CLASSN"];*/
 //    echo "confirm.php";
     include "confirm.php";
     dump();
+    postToSession();
+    insertTimestamp($conn,_session);
     clearSession();
     die();
 }
@@ -68,7 +85,10 @@ if(isset($_POST["notes"]))  // CONTACT PAGE PROCESSING
 {
     postToSession();
     insertRecord($conn,_session);
+    // sendMail($_SESSION['email'], 'Thank you for registering', 'admin@pvnet.com');
     include "visitorthankyou.php";
+    dump();
+    clearSession();
     die();
 }
 
@@ -170,6 +190,7 @@ Please select a category: (Visitor, Intern, Student and/or Volunteer)</td></tr>
             postToSession();
 //            echo "confirm.php";
             include "confirm.php";
+            insertTimestamp($conn,_session);
             dump();
             clearSession();
 

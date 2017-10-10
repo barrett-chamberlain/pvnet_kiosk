@@ -1,10 +1,24 @@
 
 <HEAD>
     <LINK REL="stylesheet" TYPE="text/css" HREF="Style.css">
-<?php jumpToSelf();
+<?php 
+jumpToSelf();
 HTML_TIMER();
 ?>
-
+<?php
+// session_unset();
+// echo '<pre>';
+// echo '==============' . '<br />';
+// echo 'SESSION' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_SESSION);
+// echo '==============' . '<br />';
+// echo 'POST' . '<br />';
+// echo '==============' . '<br />';
+// var_dump($_POST);
+// echo 'session email: ' . $_SESSION['email'];
+// echo '</pre>';
+?>
 
 
 
@@ -35,7 +49,7 @@ HTML_TIMER();
         </TR>
         <TR>
             <TD colspan=2 align="center">
-                <?php HTML_PROGRESS(); ?>
+                <?php //HTML_PROGRESS(); ?>
             </TD>
         </TR>
     </TABLE>
